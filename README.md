@@ -2,6 +2,8 @@
 
 A simple, flexible, zero-dependency modal stack manager for React.
 
+[Live Demo](https://mattjennings.github.io/react-modal-stack/)
+
 ![GIF Preview](https://media.giphy.com/media/cnVra4LzHe1LWN5qpq/giphy.gif)
 
 ## Install
@@ -30,8 +32,11 @@ React.render(
 Create a Modal component. It doesn't matter how you style it, it just needs to receive an `open` prop.
 
 ```jsx
+import React from 'react'
+import { useModals } from '@mattjennings/react-modal-stack'
+
 function Modal({ open, title, message }) {
-  const { stack, openModal, closeModal } = useModals()
+  const { closeModal } = useModals()
 
   if (!open) {
     return null
@@ -107,7 +112,7 @@ function OpenModal() {
 
 `ModalStack` provides a `renderModals` prop to take control of rendering the modals. This lets you use a library like [framer-motion](https://github.com/framer/motion) to animate your transitions between modals.
 
-See the [framer-motion example]() to see how it works.
+See the [framer-motion example](/stories/Animated.stories.tsx) to see how it works.
 
 ## API
 
