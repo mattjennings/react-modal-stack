@@ -124,10 +124,10 @@ See the [framer-motion example](/stories/Animated.stories.tsx) to see how it wor
 
 #### `useModals()`
 
-| Method                                               | Description                                                                                                                                                                |
-| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `openModal(component, props, options?: { replace })` | Opens the component provided as the modal. <br /><br />If `replace: true` is provided for `options`, it will dismiss & replace the currently displayed modal in the stack. |
-| `closeModal`                                         | Dismisses the current modal                                                                                                                                                |
-| `closeModals(amount)`                                | Dismisses the amount of modals off the stack                                                                                                                               |
-| `closeAllModals()`                                   | Dismisses all modals                                                                                                                                                       |
-| `stack`                                              | The current stack of modals                                                                                                                                                |
+| Method                                             | Description                                                                                                                                                                |
+| -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| openModal(component, props, options?: { replace }) | Opens the component provided as the modal. <br /><br />If `replace: true` is provided for `options`, it will dismiss & replace the currently displayed modal in the stack. |
+| closeModal                                         | Dismisses the current modal                                                                                                                                                |
+| closeModals(amount)                                | Dismisses the amount of modals off the stack                                                                                                                               |
+| closeAllModals()                                   | Dismisses all modals                                                                                                                                                       |
+| stack                                              | The current stack of modals                                                                                                                                                |
