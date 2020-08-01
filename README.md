@@ -12,7 +12,7 @@ npm install @mattjennings/react-modal-stack
 
 ## Usage
 
-### 1. Add `<ModalStack />` to the root of your App
+Add `<ModalStack />` to the root of your App
 
 ```jsx
 import React from 'react'
@@ -27,7 +27,7 @@ React.render(
 )
 ```
 
-### 2. Create a Modal component. It doesn't matter how you style it, it just needs to receive an `open` prop.
+Create a Modal component. It doesn't matter how you style it, it just needs to receive an `open` prop.
 
 ```jsx
 function Modal({ open, title, message }) {
@@ -78,7 +78,7 @@ function Modal({ open, title, message }) {
 }
 ```
 
-### 3. Open the modal
+Open the modal
 
 ```jsx
 import React from 'react'
@@ -107,17 +107,17 @@ function OpenModal() {
 
 `ModalStack` provides a `renderModals` prop to take control of rendering the modals. This lets you use a library like [framer-motion](https://github.com/framer/motion) to animate your transitions between modals.
 
-See the [framer-motion]() example to see how it works.
+See the [framer-motion example]() to see how it works.
 
 ## API
 
-`<ModalStack />`
+#### `<ModalStack />`
 
 | Props        | Type                           | Description                                                                                             |
 | ------------ | ------------------------------ | ------------------------------------------------------------------------------------------------------- |
 | renderModals | ({ stack }) => React.ReactNode | If you want to take control on how the modals are rendered (eg. adding animations), you can do so here. |
 
-`useModals()`
+#### `useModals()`
 
 | Method                                               | Description                                                                                                                                                                |
 | ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
