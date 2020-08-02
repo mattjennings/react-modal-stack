@@ -27,15 +27,22 @@ export const FramerMotion = () => {
 }
 
 function AnimatedModals({ stack }) {
-  // Lags slightly behind the `stack` so that we can animate the dismissal of modals
+  // the "displayed" stack which will be a lagged version of stack
+  // in order to animate the transitions between modals
   const [displayedStack, setDisplayedStack] = useState(stack)
+
+  // track the "open" state manually so we can dismiss the
+  // top modal before popping it off the stack
   const [isOpen, setOpen] = useState(false)
 
   useEffect(() => {
+    // we're opening the first modal, so update the stack right away
     if (stack.length === 1 && displayedStack.length === 0) {
       setOpen(true)
       setDisplayedStack(stack)
-    } else {
+    }
+    // stack updated, trigger a dismissal of the current modal
+    else {
       setOpen(false)
     }
   }, [stack])
@@ -64,22 +71,28 @@ function AnimatedModals({ stack }) {
           />
         )}
       </AnimatePresence>
-      {displayedStack.map((modal, index) => {
-        return (
-          <modal.component
-            key={index}
-            open={index === displayedStack.length - 1 && isOpen}
-            onAnimationComplete={() => {
-              if (displayedStack.length > 0) {
-                setDisplayedStack(stack)
-                setOpen(true)
-              }
-              modal.props?.onAnimationComplete?.()
-            }}
-            {...modal.props}
-          />
-        )
-      })}
+      {displayedStack.map((modal, index) => (
+        <modal.component
+          key={index}
+          open={index === displayedStack.length - 1 && isOpen}
+          onAnimationComplete={() => {
+            // set open state for next modal
+            if (stack.length > 0) {
+              setOpen(true)
+            } else {
+              setOpen(false)
+            }
+
+            // update displayed stack
+            // setTimeout is a hack to prevent a warning about updating state
+            // in an unmounted component (I can't figure out why it happens, or why this fixes it)
+            setTimeout(() => setDisplayedStack(stack))
+
+            modal.props?.onAnimationComplete?.()
+          }}
+          {...modal.props}
+        />
+      ))}
     </>
   )
 }
