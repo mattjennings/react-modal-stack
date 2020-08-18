@@ -97,16 +97,18 @@ function AnimatedModals({ stack }) {
   )
 }
 
+type AnimatedModalProps = {
+  open: boolean
+  title?: string
+  message?: string
+}
+
 function AnimatedModal({
   open,
   message = `I'm modal #1`,
   title = 'Hello',
   ...props
-}: {
-  open: boolean
-  title?: string
-  message?: string
-}) {
+}: AnimatedModalProps) {
   const { stack, openModal, closeModal } = useModals()
 
   const [value, setValue] = useState('')

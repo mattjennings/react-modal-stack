@@ -4,9 +4,9 @@ export interface ModalStackValue {
   /**
    * Opens a modal using the provided component and props
    */
-  openModal?: <T extends StackedModalProps, P>(
+  openModal?: <T extends StackedModalProps, P extends T>(
     component: React.ComponentType<T>,
-    props?: P,
+    props?: Omit<P, keyof StackedModalProps>,
     options?: OpenModalOptions
   ) => any
 
