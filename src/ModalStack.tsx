@@ -4,7 +4,7 @@ export interface ModalStackValue {
   /**
    * Opens a modal using the provided component and props
    */
-  openModal?: <T extends StackedModalProps, P extends T>(
+  openModal: <T extends StackedModalProps, P extends T>(
     component: React.ComponentType<T>,
     props?: Omit<P, keyof StackedModalProps>,
     options?: OpenModalOptions
@@ -13,17 +13,17 @@ export interface ModalStackValue {
   /**
    * Closes the active modal
    */
-  closeModal?: () => void
+  closeModal: () => void
 
   /**
    * Closes the number of modals
    */
-  closeModals?: (amount?: number) => void
+  closeModals: (amount?: number) => void
 
   /**
    * Closes all modals
    */
-  closeAllModals?: () => void
+  closeAllModals: () => void
 
   stack: StackedModal[]
 }
@@ -47,6 +47,7 @@ export type StackedModal = {
 const ModalStackContext = React.createContext<ModalStackValue>({} as any)
 
 export interface ModalStackProps {
+  renderBackdrop?: React.ComponentType<any>
   renderModals?: React.ComponentType<ModalStackValue>
   children?: React.ReactNode
 }
@@ -54,6 +55,7 @@ export interface ModalStackProps {
 export default function ModalStack({
   children,
   renderModals: ModalsComponent = Modals,
+  renderBackdrop: BackdropComponent,
 }: ModalStackProps) {
   const [stack, setStack] = useState<StackedModal[]>([])
 
@@ -96,6 +98,7 @@ export default function ModalStack({
   return (
     <ModalStackContext.Provider value={value}>
       {children}
+      {BackdropComponent && value.stack.length > 0 && <BackdropComponent />}
       <ModalsComponent {...value} />
     </ModalStackContext.Provider>
   )

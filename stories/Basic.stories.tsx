@@ -43,31 +43,18 @@ export const Backdrop = () => {
 
   return (
     <ModalStack
-      renderModals={({ stack }) => (
-        <>
-          {stack.length > 0 && (
-            <div
-              style={{
-                zIndex: 90,
-                position: `fixed`,
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: 'rgba(0,0,0,0.3)',
-              }}
-            />
-          )}
-          {stack.map((modal, index) => {
-            return (
-              <modal.component
-                key={index}
-                open={modal === stack[stack.length - 1]}
-                {...modal.props}
-              />
-            )
-          })}
-        </>
+      renderBackdrop={() => (
+        <div
+          style={{
+            zIndex: 90,
+            position: `fixed`,
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0,0,0,0.3)',
+          }}
+        />
       )}
     >
       <OpenModalButton />
